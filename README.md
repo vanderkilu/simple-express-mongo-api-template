@@ -1,4 +1,4 @@
-##EXPRESS MONGO API TEMPLATE
+## EXPRESS MONGO API TEMPLATE
 
 The most basic and simple express mongodb template for 
 generating or creating APIs
