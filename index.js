@@ -7,6 +7,8 @@ const Promise = require('bluebird')
 
 require('./server/config/passport')
 
+const router = require('./index.route')
+
 mongoose.Promise = Promise
 
 require('dotenv').config()
@@ -29,6 +31,8 @@ else {
     ()=> console.log('connected succesfully'))
     mongoose.set('debug', true)
 }
+
+app.use('/api', router)
 
 //forward 404 to error handler
 app.use((req, res, next)=> {
