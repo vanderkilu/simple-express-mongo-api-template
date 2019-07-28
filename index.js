@@ -3,6 +3,9 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const path = require('path')
+const Promise = require('bluebird')
+
+mongoose.Promise = Promise
 
 require('dotenv').config()
 const isProduction = process.env.NODE_ENV === 'production';
