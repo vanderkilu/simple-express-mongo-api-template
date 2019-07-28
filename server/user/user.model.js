@@ -24,7 +24,7 @@ const UserSchema = new Schema({
     },
 }, {timestamps:true})
 
-//set has for pasword
+//set hash for pasword
 UserSchema.pre('save', async function(next){
     this.password = await bcrypt.hash(this.password, 10)
     next()
