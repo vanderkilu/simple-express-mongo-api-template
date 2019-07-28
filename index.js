@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, '/public')))
 
 //mongoose config
-if (!isProduction) {
+if (isProduction) {
     mongoose.connect(process.env.MONGODB_URI)
 }
 else {
