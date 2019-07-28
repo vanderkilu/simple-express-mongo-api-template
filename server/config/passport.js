@@ -8,11 +8,11 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
 }, async (email, password, done)=> {
     try {
-        const user = await User.find({email})
+        const user = await User.findOne({email})
         if (!user) {
             return done(null, false, {message: 'user not found'})
         }
-        const isPasswordValid = await user.isValidPassword(password)
+        const isPasswordValid = await user.checkPassword(password)
         if (!isPasswordValid) {
             return done(null, false, {message: 'invalid password'})
         }

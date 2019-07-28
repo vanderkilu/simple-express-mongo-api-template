@@ -14,17 +14,18 @@ exports.login = async (req, res, next)=> {
 }
 
 exports.register = async (req, res, next) => {
-   const user = new User()
-   user.email = req.body.email
-   user.password = req.body.password
-   user.handle = req.body.username
-   user.image = req.body.image
-
-   try {
-       await user.save() 
+    try {
+        const user = await User.create({
+            email: req.body.email,
+            password: req.body.password,
+            handle: req.body.username,
+            image: req.body.image,
+       })
        return res.json({user: user.toAuthJSON()})
     }
     catch(err) {
         return next(err)
     }
+   
+   
 }

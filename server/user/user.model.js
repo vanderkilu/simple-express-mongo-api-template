@@ -25,17 +25,16 @@ const UserSchema = new Schema({
 }, {timestamps:true})
 
 //set has for pasword
-UserSchema.pre('save', async (next)=> {
+UserSchema.pre('save', async function(next){
     this.password = await bcrypt.hash(this.password, 10)
     next()
 })
 //compare passwords
-UserSchema.methods.isValidPassword = async (password)=> {
-    const isValid = await bcrypt.compare(password, this.password)
-    return isValid
+UserSchema.methods.checkPassword = function(password) {
+    return bcrypt.compare(password, this.password)
 }
 
-UserSchema.methods.generateJWT = () => {
+UserSchema.methods.generateJWT = function() {
     const today = new Date();
     const exp = new Date(today);
     exp.setDate(today.getDate() + 60);
@@ -47,7 +46,7 @@ UserSchema.methods.generateJWT = () => {
     }, secret)
 }
 
-UserSchema.methods.toAuthJSON = ()=> {
+UserSchema.methods.toAuthJSON = function() {
     return {
         id: this._id,
         username: this.handle,
