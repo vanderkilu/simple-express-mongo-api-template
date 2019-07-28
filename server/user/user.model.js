@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const secret = require('../config').secret
 
 const UserSchema = new Schema({
-    username: {
+    handle: {
         type: String,
         required: true,
         unique: true
@@ -50,7 +50,8 @@ UserSchema.methods.generateJWT = () => {
 UserSchema.methods.toJSON = ()=> {
     return {
         id: this._id,
-        username: this.username,
-        image: this.image
+        username: this.handle,
+        image: this.image,
+        token: this.generateJWT()
     }
 }
