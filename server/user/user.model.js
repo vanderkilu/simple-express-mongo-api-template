@@ -47,7 +47,7 @@ UserSchema.methods.generateJWT = () => {
     }, secret)
 }
 
-UserSchema.methods.toJSON = ()=> {
+UserSchema.methods.toAuthJSON = ()=> {
     return {
         id: this._id,
         username: this.handle,
@@ -55,3 +55,5 @@ UserSchema.methods.toJSON = ()=> {
         token: this.generateJWT()
     }
 }
+
+module.exports = mongoose.model('User', UserSchema)

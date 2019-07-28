@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const path = require('path')
 const Promise = require('bluebird')
 
+require('./server/config/passport')
+
 mongoose.Promise = Promise
 
 require('dotenv').config()
