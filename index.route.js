@@ -10,9 +10,10 @@ router.post('/uploads', cloudinaryConfig, uploadMiddleWare, async(req, res,next)
         const fileUrl = toStorageUrl(req).content
         try {
             const uploadedFile = await cloudinary.uploader.upload(fileUrl, {
-                folder: 'rentify',
+                folder: process.env.CLOUDINARY_FOLDER_NAME,
                 use_filename: true
             })
+            //process the file here or store path in db
             res.json(uploadedFile)
         }
         catch(err) {
