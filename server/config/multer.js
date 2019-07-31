@@ -7,7 +7,7 @@ const uploadMiddleWare = multer({ storage }).single('image');
 
 const storageUrl = new dataURI()
 const toStorageUrl = (req)=> {
-    storageUrl.format(path.extname(req.file.originalname).toString(),
+   return  storageUrl.format(path.extname(req.file.originalname).toString(),
     req.file.buffer)
 }
 
